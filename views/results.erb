@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col">
+    <h2><%=@survey.name%></h2>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @takers.each do |taker| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= taker.name %></td>
+                  <td style="text-align: center;">
+                    <a href="/taker/<%= taker.id %>">
+                      <button class="btn btn-info btn-block" type="button">view results</button>
+                    </a>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+<a href="/">home</a>

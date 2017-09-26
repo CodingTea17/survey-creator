@@ -57,3 +57,41 @@ delete '/edit_question/:id' do
   Question.find(params[:id]).destroy()
   redirect("/create_questions/#{survey_id}")
 end
+
+get '/create_taker/:id' do
+  @survey = Survey.find(params[:id])
+  erb(:create_taker)
+end
+
+post '/create_taker/:id' do
+  taker = Taker.create({:name => params['name'], :survey_id => params[:id]})
+  redirect("/survey/#{taker.id}")
+end
+
+get '/survey/:id' do # taker id
+  @taker = Taker.find(params[:id])
+  @survey = Survey.find(@taker.survey_id)
+  @questions = @survey.questions
+  erb(:survey)
+end
+
+post '/survey/:id' do # taker id
+  taker = Taker.find(params[:id])
+  Survey.find(taker.survey_id).questions.each do |q|
+    Answer.create({:answer => params["#{q.id}"], :question_id => q.id, :taker_id => taker.id})
+  end
+  redirect('/')
+end
+
+get '/results/:id' do # survey id
+  @survey = Survey.find(params[:id])
+  @takers = @survey.takers
+  erb(:results)
+end
+
+get '/taker/:id' do # taker id
+  @taker = Taker.find(params[:id])
+  @survey = Survey.find(@taker.survey_id)
+  @answers = @taker.answers
+  erb(:taker)
+end

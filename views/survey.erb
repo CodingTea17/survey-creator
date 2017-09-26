@@ -1,0 +1,19 @@
+<div class="row justify-content-md-center">
+  <div class="col-9">
+    <div class="card border-dark">
+      <div class="card-header border-dark bg-transparent"><%= @survey.name %></div>
+      <div class="card-body text-dark">
+        <!-- <h4 class="card-title">Place Holder</h4> -->
+        <form action="/survey/<%= @taker.id %>" method="post">
+          <% @survey.questions.each do |q| %>
+            <div class="form-group">
+              <label for="<%= q.id %>"><%= q.question %></label>
+              <input name="<%= q.id %>" type="text" class="form-control">
+            </div>
+          <% end %>
+          <button type="submit" class="btn btn-success">Submit Survey</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

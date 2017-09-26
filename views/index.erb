@@ -9,6 +9,7 @@
                 <th>Name</th>
                 <th>Creator</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -17,7 +18,12 @@
                   <td class="align-middle"><%= survey.name %></td>
                   <td class="align-middle"><%= survey.author %></td>
                   <td style="text-align: center;">
-                    <a id="<%= survey.name %>" href="/survey/<%= survey.id %>">
+                    <a href="/results/<%= survey.id %>">
+                      <button class="btn btn-warning btn-block" type="button">View Results</button>
+                    </a>
+                  </td>
+                  <td style="text-align: center;">
+                    <a href="/create_taker/<%= survey.id %>">
                       <button class="btn btn-primary btn-block" type="button">Take Survey</button>
                     </a>
                   </td>

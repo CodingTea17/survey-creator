@@ -1,0 +1,17 @@
+<div class="row justify-content-md-center">
+  <div class="col-9">
+    <div class="card border-dark">
+      <div class="card-header"><%= @survey.name %></div>
+      <div class="card-body text-dark">
+        <!-- <h4 class="card-title">Place Holder</h4> -->
+        <form action="/create_taker/<%= @survey.id %>" method="post">
+          <div class="form-group">
+            <label for="name">Enter your name:</label>
+            <input name="name" type="text" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Next</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
