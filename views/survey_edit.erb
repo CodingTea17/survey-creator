@@ -1,0 +1,17 @@
+<h5><%=@survey.name %></h5>
+
+<form action="/survey_edit/<%=@survey.id%>" method="post">
+  <div class="form-group">
+    <input name="_method" type="hidden" value="patch">
+    <label for="name"> Update survey name to: </label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-warning">Update survey</button>
+</form>
+
+<form action="/survey_edit/<%=@survey.id%>" method="post">
+  <div class="form-group">
+    <input name="_method" type="hidden" value="delete">
+  </div>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>

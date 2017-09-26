@@ -1,6 +1,10 @@
 require("spec_helper")
 
 describe(Survey) do
+    it("validates presence of survey name") do
+      test_survey = Survey.new({:name => ""})
+      expect(test_survey.save()).to(eq(false))
+    end
 
   describe("#takers") do
     it("tells which takers are in it") do

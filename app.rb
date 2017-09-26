@@ -21,8 +21,30 @@ end
 post '/create_survey' do
   name = params['name']
   author = params['author']
-  survey = Survey.create({:name => name, :author => author})
-  redirect("/create_questions/#{survey.id}")
+  survey = Survey.new({:name => name, :author => author})
+  if survey.save
+    redirect("/create_questions/#{survey.id}")
+  else
+    erb(:errors)
+  end
+end
+
+get '/survey_edit/:id' do
+  @survey = Survey.find(params[:id])
+  erb(:survey_edit)
+end
+
+patch '/survey_edit/:id' do
+  name = params["name"]
+  survey = Survey.find(params[:id])
+  survey.update({:name => name})
+  redirect("/create_survey")
+end
+
+delete '/survey_edit/:id' do
+  survey = Survey.find(params[:id])
+  survey.delete()
+  redirect("/create_survey")
 end
 
 get '/create_questions/:id' do

@@ -11,6 +11,7 @@
                 <th>Name</th>
                 <th>Creator</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -21,6 +22,11 @@
                   <td style="text-align: center;">
                     <a href="/create_questions/<%= survey.id %>">
                       <button class="btn btn-info btn-block" type="button">Add questions</button>
+                    </a>
+                  </td>
+                  <td style="text-align: center;">
+                    <a href="/survey_edit/<%= survey.id %>">
+                      <button class="btn btn-info btn-block" type="button">Edit</button>
                     </a>
                   </td>
                 </tr>
