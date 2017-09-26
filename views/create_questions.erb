@@ -1,0 +1,42 @@
+<h1>Add questions to your survey: <%=@survey.name %></h1>
+
+<div class="row">
+  <div class="col">
+    <% if @questions.any? %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th>Question</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @questions.each do |q| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= q.question %></td>
+                  <td style="text-align: center;">
+                    <a href="/edit_question/<%= q.id %>">
+                      <button class="btn btn-primary btn-block" type="button">Edit question</button>
+                    </a>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<form action="/create_questions/<%=@survey.id%>" method="post">
+  <div class="form-group">
+    <label for="question">Question: </label>
+    <input id="question" name="question" class="form-control" type="text">
+  </div>
+
+  <button type="submit" class="btn btn-warning">Add question</button>
+</form>
