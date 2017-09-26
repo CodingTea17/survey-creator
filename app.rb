@@ -25,6 +25,7 @@ post '/create_survey' do
   if survey.save
     redirect("/create_questions/#{survey.id}")
   else
+    @an_errored_object = survey
     erb(:errors)
   end
 end
@@ -56,8 +57,13 @@ end
 post '/create_questions/:id' do
   survey = Survey.find(params[:id])
   question = params['question']
-  Question.create({:question => question, :survey_id => survey.id})
-  redirect("/create_questions/#{survey.id}")
+  question = Question.new({:question => question, :survey_id => survey.id})
+  if question.save
+    redirect("/create_questions/#{survey.id}")
+  else
+    @an_errored_object = question
+    erb(:errors)
+  end
 end
 
 get '/edit_question/:id' do
@@ -86,8 +92,13 @@ get '/create_taker/:id' do
 end
 
 post '/create_taker/:id' do
-  taker = Taker.create({:name => params['name'], :survey_id => params[:id]})
-  redirect("/survey/#{taker.id}")
+  taker = Taker.new({:name => params['name'], :survey_id => params[:id]})
+  if taker.save
+    redirect("/survey/#{taker.id}")
+  else
+    @an_errored_object = taker
+    erb(:errors)
+  end
 end
 
 get '/survey/:id' do # taker id
